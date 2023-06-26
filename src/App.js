@@ -1,8 +1,8 @@
 import './App.css';
 import { useState,useEffect } from 'react';
 import ShowFlag from './components/Flag';
+
 function App() {
-  const [points, setPoints] = useState([0]);
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState([]);
   
@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <h1>React App</h1>
-      <ShowFlag countries={countries} country={country} setCountry={setCountry} setPoints={setPoints} points={points}/>
+      <ShowFlag countries={countries} country={country} setCountry={setCountry}/>
     </div>
   );
 }
