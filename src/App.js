@@ -5,6 +5,7 @@ import ShowFlag from './components/Flag';
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState([]);
+  const [points, setPoints] = useState([]);
   
   useEffect(() => {
     fetch('https://countriesnow.space/api/v0.1/countries/flag/images')
@@ -20,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <h1>React App</h1>
-      <ShowFlag countries={countries} country={country} setCountry={setCountry}/>
+      <ShowFlag countries={countries} country={country} setCountry={setCountry} points={points} setPoints={setPoints}/>
     </div>
   );
 }

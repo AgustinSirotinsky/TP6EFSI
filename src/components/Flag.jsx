@@ -4,23 +4,23 @@ import React, { useState } from "react";
 
 const ShowFlag = (props) => {
   const [text, OnChange] = useState(['']);
-  const [points, setPoints] = useState([]);
+  //const [points, setPoints] = useState([]);
 
   const handleChange = (e) => {
     OnChange(e.target.value)
 }
   const Validar = (event) => {
-    setPoints(event.target.value);
+    props.setPoints(event.target.value);
     console.log(props.country.name)
-    setPoints([...points, 0]);
+    props.setPoints([...props.points, 0]);
     if(text == props.country.name){ //No hace lowercase
-      setPoints(points.map(value => value + 10));
+      props.setPoints(props.points.map(value => value + 10));
       props.setCountry(props.countries[Math.floor(Math.random() * 220)])
       OnChange('')
       alert("Correcto!")
     }
     else{
-      setPoints(points.map(value => value - 1));
+      props.setPoints(props.points.map(value => value - 1));
       alert("NO")
     }
   }
@@ -31,7 +31,7 @@ const ShowFlag = (props) => {
           <div>
             <input type="text" value={text} onChange={handleChange} placeholder='Ingresar Bandera' />
             <button onClick={Validar}>Enviar</button> 
-            <p>{`Tus puntos: ${points}`}</p> {/*No aparecen los puntos*/}
+            <p>{`Tus puntos: ${props.points}`}</p> {/*No aparecen los puntos*/}
           </div>
         </div>
     );
