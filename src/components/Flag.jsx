@@ -1,36 +1,37 @@
-import React, { useSyncExternalStore } from "react";
-import { useState,useEffect } from 'react';
+import useEffect from 'react';
+import React, { useState } from "react";
 
 
 const ShowFlag = (props) => {
   const [text, OnChange] = useState(['']);
   const [points, setPoints] = useState([]);
 
+  const handleChange = (e) => {
+    OnChange(e.target.value)
+}
   const Validar = (event) => {
     setPoints(event.target.value);
     console.log(props.country.name)
     setPoints([...points, 0]);
-    if(text==props.country.name){
+    if(text == props.country.name){ //No hace lowercase
       setPoints(points.map(value => value + 10));
-      console.log("Correcto!")
+      props.setCountry(props.countries[Math.floor(Math.random() * 220)])
+      OnChange('')
+      alert("Correcto!")
     }
     else{
       setPoints(points.map(value => value - 1));
-      console.log("incorrecto :(")
+      alert("NO")
     }
   }
-  const handleChange = (event) => {
-    OnChange(event.target.value);
-  };
     return (
         <div>
           <img src={props.country.flag} alt="Bandera" />
           <br/>
           <div>
             <input type="text" value={text} onChange={handleChange} placeholder='Ingresar Bandera' />
-            <button onClick={Validar}>Enviar</button>
-            <p>{text}</p> 
-            <p>{`Tus putos: ${points}`}</p> 
+            <button onClick={Validar}>Enviar</button> 
+            <p>{`Tus puntos: ${points}`}</p> {/*No aparecen los puntos*/}
           </div>
         </div>
     );
